@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js" charset="utf-8"></script>
+  <script src="app.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.css">
+  <link rel="stylesheet" href="styles.css">
+  <title>Reddit!</title>
+</head>
+<body ng-app="reddit">
+  <div class="ui secondary  menu">
+    <h3 class="item">
+      Reddit Clone
+    </h3>
+    <a class="item">
+      Add Post +
+    </a>
+    <div class="header item">
+      Sort By
+    </div>
+    <a class="active item">
+      Newest
+    </a>
+    <a class="item">
+      Most Popular
+    </a>
+    <a class="item">
+      Most Comments
+    </a>
+    <div class="right menu">
+      <div class="item">
+        <div class="ui icon input">
+          <input type="text" placeholder="Search...">
+          <i class="search link icon"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-controller="posts">
+    <div class="ui stackable grid" ng-repeat="post in view.posts">
+      <div class="row">
+        <div class="three wide column">
+          <img class="ui middle aligned rounded small image" ng-src="{{post.imageLink}}" alt="">
+        </div>
+        <div class="thirteen wide column">
+          <h2>
+            {{post.title}}
+            <a ng-click="upvote(post.key)"><i class="long arrow up icon"></i></a>
+            <a ng-click="downvote()"><i class="long arrow down icon"></i></a>
+            {{post.count}}
+          </h2>
+          <p class="">By: {{post.author}}</p>
+          <p>{{post.content}}</p>
+          <p>{{post.date | date: fullDate}} |
+             <ng-pluralize count="post.comments.length"
+                           when="{'0' : '0 comments |',
+                                  '1' : '1 comment |',
+                                  'other' : '{} comments |'}">
+
+             </ng-pluralize>
+             <button type="button" class="ui basic button"><i class="write icon"></i>Add Comment</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
