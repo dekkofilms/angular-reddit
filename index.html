@@ -43,24 +43,24 @@
   </div>
   <div>
     <div ng-show="view.newpost">
-      <form class="ui form" ng-submit="submit()">
+      <form class="ui form" name="new" ng-submit="submit(new.$valid)">
         <div class="field">
           <label>Title</label>
-          <input type="text" name="title" ng-model="title">
+          <input type="text" name="title" ng-model="title" required>
         </div>
         <div class="field">
           <label>Author</label>
-          <input type="text" name="author" ng-model="author">
+          <input type="text" name="author" ng-model="author" required>
         </div>
         <div class="field">
           <label>Image URL</label>
-          <input type="text" name="imageLink" ng-model="imageLink">
+          <input type="text" name="imageLink" ng-model="imageLink" required>
         </div>
         <div class="field">
           <label>Description</label>
-          <textarea placeholder="your content here..." name="description" ng-model="description"></textarea>
+          <textarea placeholder="your content here..." name="description" ng-model="description" required></textarea>
         </div>
-        <input class="ui button" id="submit" type="submit" value="Submit" ng-click="view.newpost = !view.newpost"></input>
+        <input class="ui button" id="submit" type="submit" value="Submit"></input>
       </form>
       <hr>
     </div>

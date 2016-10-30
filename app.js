@@ -47,28 +47,32 @@ app.controller('posts', ['$scope', ($scope) => {
     }
   }
 
-  $scope.submit = () => {
-    $scope.view.idCount++;
+  $scope.submit = (isValid) => {
+    if (isValid) {
+      console.log(true);
+      $scope.view.newpost = !$scope.view.newpost;
+      $scope.view.idCount++;
 
-    //defining the new post submission
-    let newPost = {};
-    newPost.id = $scope.view.idCount;
-    newPost.title = $scope.title;
-    newPost.content = $scope.description;
-    newPost.imageLink = $scope.imageLink;
-    newPost.date = new Date ();
-    newPost.author = $scope.author;
-    newPost.comments = [];
-    newPost.count = 0;
+      //defining the new post submission
+      let newPost = {};
+      newPost.id = $scope.view.idCount;
+      newPost.title = $scope.title;
+      newPost.content = $scope.description;
+      newPost.imageLink = $scope.imageLink;
+      newPost.date = new Date ();
+      newPost.author = $scope.author;
+      newPost.comments = [];
+      newPost.count = 0;
 
-    //pushing into my posts array
-    $scope.view.posts.push(newPost)
-    //
-    //clear form
-    $scope.title = '';
-    $scope.description = '';
-    $scope.imageLink = '';
-    $scope.author = '';
+      //pushing into my posts array
+      $scope.view.posts.push(newPost)
+      //
+      //clear form
+      $scope.title = '';
+      $scope.description = '';
+      $scope.imageLink = '';
+      $scope.author = '';
+    }
   }
 
 }]);
