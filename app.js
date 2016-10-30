@@ -1,9 +1,13 @@
 var app = angular.module('reddit', []);
 
 app.controller('posts', ['$scope', ($scope) => {
+
   $scope.view = {};
   $scope.view.newpost = false;
+  $scope.view.comments = false;
+  $scope.view.addcomment = false;
   $scope.view.idCount = 2;
+  $scope.view.comment = null;
   $scope.view.posts = [
     {
       id : 0,
@@ -49,7 +53,6 @@ app.controller('posts', ['$scope', ($scope) => {
 
   $scope.submit = (isValid) => {
     if (isValid) {
-      console.log(true);
       $scope.view.newpost = !$scope.view.newpost;
       $scope.view.idCount++;
 
@@ -72,6 +75,14 @@ app.controller('posts', ['$scope', ($scope) => {
       $scope.description = '';
       $scope.imageLink = '';
       $scope.author = '';
+    }
+  }
+
+  $scope.newcomment = (isValid, id) => {
+    if (isValid) {
+
+      $scope.view.posts[id].comments.push($scope.view.comment);
+      $scope.view.comment = '';
     }
   }
 

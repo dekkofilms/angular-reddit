@@ -60,7 +60,7 @@
           <label>Description</label>
           <textarea placeholder="your content here..." name="description" ng-model="description" required></textarea>
         </div>
-        <input class="ui button" id="submit" type="submit" value="Submit"></input>
+        <input class="ui button" id="submit" type="submit" value="Submit">
       </form>
       <hr>
     </div>
@@ -79,14 +79,28 @@
           <p class="">By: {{post.author}}</p>
           <p>{{post.content}}</p>
           <p>{{post.date | date: fullDate}} |
-             <ng-pluralize count="post.comments.length"
-                           when="{'0' : '0 comments |',
-                                  '1' : '1 comment |',
-                                  'other' : '{} comments |'}">
+            <a ng-click="comments = !comments">
+              <ng-pluralize count="post.comments.length"
+                            when="{'0' : '0 comments',
+                                   '1' : '1 comment',
+                                   'other' : '{} comments'}">
 
-             </ng-pluralize>
-             <button type="button" class="ui basic button"><i class="write icon"></i>Add Comment</button>
+              </ng-pluralize>
+            </a>
+            | <button type="button" class="ui basic button" ng-click="addcomment = !addcomment"><i class="write icon"></i>Add Comment</button>
           </p>
+          <div ng-show="comments">
+            <h3>Comments:</h3>
+            <div ng-repeat="comment in post.comments">
+              <span class="comments">{{comment}}</span>
+            </div>
+          </div>
+          <div ng-show="addcomment">
+            <form name="newComm" ng-submit="newcomment(newComm.$valid, post.id)">
+              <textarea type="text" name="comment" ng-model="view.comment" required></textarea>
+              <input class="ui button" id="submit" type="submit" ng-click="addcomment = !addcomment">
+            </form>
+          </div>
         </div>
       </div>
     </div>
