@@ -12,22 +12,22 @@
   <link rel="stylesheet" href="styles.css">
   <title>Reddit!</title>
 </head>
-<body ng-app="reddit">
-  <div class="ui secondary  menu">
+<body ng-app="reddit" ng-controller="posts">
+  <div class="ui secondary stackable menu">
     <h3 class="item">
       Reddit Clone
     </h3>
-    <a class="item">
+    <a class="item" ng-click="view.newpost = !view.newpost">
       Add Post +
     </a>
     <div class="header item">
       Sort By
     </div>
     <a class="active item">
-      Newest
+      Most Popular
     </a>
     <a class="item">
-      Most Popular
+      Newest
     </a>
     <a class="item">
       Most Comments
@@ -41,8 +41,30 @@
       </div>
     </div>
   </div>
-  <div ng-controller="posts">
-    <div class="ui stackable grid" ng-repeat="post in view.posts">
+  <div>
+    <div ng-show="view.newpost">
+      <form class="ui form" ng-submit="submit()">
+        <div class="field">
+          <label>Title</label>
+          <input type="text" name="title" ng-model="title">
+        </div>
+        <div class="field">
+          <label>Author</label>
+          <input type="text" name="author" ng-model="author">
+        </div>
+        <div class="field">
+          <label>Image URL</label>
+          <input type="text" name="imageLink" ng-model="imageLink">
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea placeholder="your content here..." name="description" ng-model="description"></textarea>
+        </div>
+        <input class="ui button" id="submit" type="submit" value="Submit" ng-click="view.newpost = !view.newpost"></input>
+      </form>
+      <hr>
+    </div>
+    <div class="ui stackable grid" ng-repeat="(id, post) in view.posts">
       <div class="row">
         <div class="three wide column">
           <img class="ui middle aligned rounded small image" ng-src="{{post.imageLink}}" alt="">
@@ -50,8 +72,8 @@
         <div class="thirteen wide column">
           <h2>
             {{post.title}}
-            <a ng-click="upvote(post.key)"><i class="long arrow up icon"></i></a>
-            <a ng-click="downvote()"><i class="long arrow down icon"></i></a>
+            <a ng-click="vote(id, 'up')"><i class="long arrow up icon"></i></a>
+            <a ng-click="vote(id, 'down')"><i class="long arrow down icon"></i></a>
             {{post.count}}
           </h2>
           <p class="">By: {{post.author}}</p>
