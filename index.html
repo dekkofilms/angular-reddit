@@ -14,7 +14,7 @@
 </head>
 <body ng-app="reddit" ng-controller="posts">
   <div class="ui secondary stackable menu">
-    <h3 class="item">
+    <h3 class="header item">
       Reddit Clone
     </h3>
     <a class="item" ng-click="view.newpost = !view.newpost">
@@ -23,13 +23,13 @@
     <div class="header item">
       Sort By
     </div>
-    <a class="active item">
+    <a class="item" ng-click="sorter('-count')" ng-class="{active: view.sorter == '-count'}">
       Most Popular
     </a>
-    <a class="item">
+    <a class="item" ng-click="sorter('date')" ng-class="{active: view.sorter == 'date'}">
       Newest
     </a>
-    <a class="item">
+    <a class="item" ng-click="sorter('-comments.length')" ng-class="{active: view.sorter == '-comments.length'}">
       Most Comments
     </a>
     <div class="right menu">
@@ -64,7 +64,7 @@
       </form>
       <hr>
     </div>
-    <div class="ui stackable grid" ng-repeat="post in view.posts | orderBy : '-count' | filter : searchFilter">
+    <div class="ui stackable grid" ng-repeat="post in view.posts | orderBy : view.sorter | filter : searchFilter">
       <div class="row">
         <div class="three wide column">
           <img class="ui middle aligned rounded small image" ng-src="{{post.imageLink}}" alt="">

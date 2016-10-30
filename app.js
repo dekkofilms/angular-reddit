@@ -9,6 +9,8 @@ app.controller('posts', ['$scope', ($scope) => {
   $scope.view.idCount = 2;
   $scope.view.comment = null;
 
+  $scope.view.sorter = '-count';
+
   $scope.view.posts = [
     {
       id : 0,
@@ -85,6 +87,10 @@ app.controller('posts', ['$scope', ($scope) => {
       $scope.view.posts[id].comments.push($scope.view.comment);
       $scope.view.comment = '';
     }
+  }
+
+  $scope.sorter = (flag) => {
+    $scope.view.sorter = flag;
   }
 
 }]);
