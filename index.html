@@ -64,7 +64,7 @@
       </form>
       <hr>
     </div>
-    <div class="ui stackable grid" ng-repeat="(id, post) in view.posts">
+    <div class="ui stackable grid" ng-repeat="post in view.posts | orderBy : '-count'">
       <div class="row">
         <div class="three wide column">
           <img class="ui middle aligned rounded small image" ng-src="{{post.imageLink}}" alt="">
@@ -72,8 +72,8 @@
         <div class="thirteen wide column">
           <h2>
             {{post.title}}
-            <button class="ui button" ng-click="vote(id, 'up')"><i class="long arrow up icon"></i></button>
-            <button class="ui button" ng-click="vote(id, 'down')"><i class="long arrow down icon"></i></button>
+            <button class="ui button" ng-click="vote(post.id, 'up')"><i class="long arrow up icon"></i></button>
+            <button class="ui button" ng-click="vote(post.id, 'down')"><i class="long arrow down icon"></i></button>
             <span ng-class="{positive: post.count > 0, negative: post.count < 0}">{{post.count}}</span>
           </h2>
           <p class="">By: {{post.author}}</p>
