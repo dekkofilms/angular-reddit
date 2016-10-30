@@ -8,6 +8,7 @@ app.controller('posts', ['$scope', ($scope) => {
   $scope.view.addcomment = false;
   $scope.view.idCount = 2;
   $scope.view.comment = null;
+
   $scope.view.posts = [
     {
       id : 0,

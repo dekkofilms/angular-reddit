@@ -35,7 +35,7 @@
     <div class="right menu">
       <div class="item">
         <div class="ui icon input">
-          <input type="text" placeholder="Search...">
+          <input type="text" placeholder="Search..." ng-model="searchFilter">
           <i class="search link icon"></i>
         </div>
       </div>
@@ -64,7 +64,7 @@
       </form>
       <hr>
     </div>
-    <div class="ui stackable grid" ng-repeat="post in view.posts | orderBy : '-count'">
+    <div class="ui stackable grid" ng-repeat="post in view.posts | orderBy : '-count' | filter : searchFilter">
       <div class="row">
         <div class="three wide column">
           <img class="ui middle aligned rounded small image" ng-src="{{post.imageLink}}" alt="">
