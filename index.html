@@ -15,10 +15,10 @@
   <title>Reddit Clone</title>
 </head>
 <body ng-app="reddit" ng-controller="posts">
-  <div id="header" class="ui inverted secondary stackable menu">
-    <h3 class="header item">
+  <div id="header" class="ui huge inverted secondary stackable menu">
+    <h2 class="header item">
       Reddit Clone
-    </h3>
+    </h2>
     <a class="item" ng-click="view.newpost = !view.newpost">
       Add Post +
     </a>
@@ -36,7 +36,7 @@
     </a>
     <div class="right menu">
       <div class="item">
-        <div class="ui icon input">
+        <div class="ui icon input inverted">
           <input type="text" placeholder="Search..." ng-model="searchFilter">
           <i class="search link icon"></i>
         </div>
@@ -67,7 +67,6 @@
         </div>
         <input class="ui button" id="submit" type="submit" value="Submit">
       </form>
-      <hr>
     </div>
     <div class="ui stackable internally celled grid item fourteen wide column" ng-animate="'animate'" ng-repeat="post in view.posts | orderBy : view.sorter | filter : searchFilter">
       <div class="row">
