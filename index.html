@@ -15,7 +15,7 @@
   <title>Reddit Clone</title>
 </head>
 <body ng-app="reddit" ng-controller="posts">
-  <div class="ui secondary stackable menu">
+  <div id="header" class="ui secondary stackable menu">
     <h3 class="header item">
       Reddit Clone
     </h3>
@@ -43,8 +43,8 @@
       </div>
     </div>
   </div>
-  <div>
-    <div class="box-one" ng-show="view.newpost">
+  <div class="ui sixteen column centered grid">
+    <div class="box-one fourteen wide column" ng-show="view.newpost">
       <form action="#" class="ui form css-form" name="new" ng-submit="submit(new.$valid)" novalidate>
         <div class="field">
           <label>Title</label>
@@ -69,7 +69,7 @@
       </form>
       <hr>
     </div>
-    <div class="ui stackable grid item" ng-animate="'animate'" ng-repeat="post in view.posts | orderBy : view.sorter | filter : searchFilter">
+    <div class="ui stackable grid item fourteen wide column" ng-animate="'animate'" ng-repeat="post in view.posts | orderBy : view.sorter | filter : searchFilter">
       <div class="row">
         <div class="three wide column">
           <img class="ui middle aligned rounded small image" ng-src="{{post.imageLink}}" alt="">

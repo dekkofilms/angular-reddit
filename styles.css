@@ -1,3 +1,7 @@
+#header {
+  margin-bottom: 40px;
+}
+
 .postbox {
   border: 2px solid black;
   border-radius: 15px;
@@ -44,22 +48,10 @@ button {
   opacity:1;
 }
 
-/*.css-form input.ng-invalid.ng-touched {
+.css-form input.ng-invalid.ng-touched {
   background-color: #FA787E;
 }
 
 .css-form input.ng-valid.ng-touched {
   background-color: #78FA89;
-}*/
-
-#loginForm .has-error .control-label,
-#loginForm .has-error .help-block,
-#loginForm .has-error .form-control-feedback {
-    color: #f39c12;
-}
-
-#loginForm .has-success .control-label,
-#loginForm .has-success .help-block,
-#loginForm .has-success .form-control-feedback {
-    color: #18bc9c;
 }
