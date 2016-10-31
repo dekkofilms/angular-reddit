@@ -1,4 +1,4 @@
-var app = angular.module('reddit', ['ngAnimate']);
+var app = angular.module('reddit', ['ngAnimate', 'ngMessages']);
 
 app.controller('posts', ['$scope', ($scope) => {
 
