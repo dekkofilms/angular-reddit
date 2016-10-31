@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js" charset="utf-8"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js" charset="utf-8"></script>
   <script src="app.js" charset="utf-8"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.css">
@@ -42,7 +43,7 @@
     </div>
   </div>
   <div>
-    <div ng-show="view.newpost">
+    <div class="box-one" ng-show="view.newpost">
       <form class="ui form" name="new" ng-submit="submit(new.$valid)">
         <div class="field">
           <label>Title</label>
@@ -64,7 +65,7 @@
       </form>
       <hr>
     </div>
-    <div class="ui stackable grid" ng-repeat="post in view.posts | orderBy : view.sorter | filter : searchFilter">
+    <div class="ui stackable grid item" ng-animate="'animate'" ng-repeat="post in view.posts | orderBy : view.sorter | filter : searchFilter">
       <div class="row">
         <div class="three wide column">
           <img class="ui middle aligned rounded small image" ng-src="{{post.imageLink}}" alt="">
