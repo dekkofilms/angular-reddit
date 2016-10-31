@@ -15,7 +15,7 @@
   <title>Reddit Clone</title>
 </head>
 <body ng-app="reddit" ng-controller="posts">
-  <div id="header" class="ui secondary stackable menu">
+  <div id="header" class="ui inverted secondary stackable menu">
     <h3 class="header item">
       Reddit Clone
     </h3>
@@ -69,7 +69,7 @@
       </form>
       <hr>
     </div>
-    <div class="ui stackable grid item fourteen wide column" ng-animate="'animate'" ng-repeat="post in view.posts | orderBy : view.sorter | filter : searchFilter">
+    <div class="ui stackable internally celled grid item fourteen wide column" ng-animate="'animate'" ng-repeat="post in view.posts | orderBy : view.sorter | filter : searchFilter">
       <div class="row">
         <div class="three wide column">
           <img class="ui middle aligned rounded small image" ng-src="{{post.imageLink}}" alt="">
@@ -82,7 +82,7 @@
             <span ng-class="{positive: post.count > 0, negative: post.count < 0}">{{post.count}}</span>
           </h2>
           <p class="">By: {{post.author}}</p>
-          <p>{{post.content}}</p>
+          <p class="post-content">{{post.content}}</p>
           <p>{{post.date | date: fullDate}} |
             <a ng-click="comments = !comments">
               <ng-pluralize count="post.comments.length"
