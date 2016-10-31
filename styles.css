@@ -43,3 +43,11 @@ button {
 .item.ng-enter.ng-enter-active {
   opacity:1;
 }
+
+.css-form input.ng-invalid.ng-touched {
+  background-color: #FA787E;
+}
+
+.css-form input.ng-valid.ng-touched {
+  background-color: #78FA89;
+}
