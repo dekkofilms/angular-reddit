@@ -4,7 +4,12 @@ app.config(function ($stateProvider) {
   $stateProvider
     .state('index', {
       url: '/',
-      templateUrl: '../public/partials/posts.html',
+      templateUrl: './partials/posts.html',
       controller: 'posts'
+    })
+    .state('signup', {
+      url: '/signup',
+      templateUrl: './partials/signup.html',
+      controller: 'signup'
     })
 });
