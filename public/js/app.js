@@ -4,7 +4,7 @@ app.config(function ($stateProvider) {
   $stateProvider
     .state('index', {
       url: '/',
-      templateUrl: './partials/posts.html',
-      controller: 'posts',
+      templateUrl: '../public/partials/posts.html',
+      controller: 'posts'
     })
 });

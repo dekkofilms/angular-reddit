@@ -1,4 +1,4 @@
-app.controller('posts', ['$scope', ($scope) => {
+app.controller('posts', ['$scope', function ($scope) {
 
   $scope.view = {};
   $scope.view.newpost = false;
