@@ -4,8 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "process.env.NODE_ENV=development nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-as-promised": "^1.1.0",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "jsonwebtoken": "^7.1.9",
+    "knex": "^0.12.6",
+    "method-override": "^2.3.6",
+    "pg": "^6.1.0"
+  }
 }

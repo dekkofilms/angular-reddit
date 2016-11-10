@@ -8,6 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js" charset="utf-8"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js" charset="utf-8"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js" charset="utf-8"></script>
   <script src="./public/js/app.js" charset="utf-8"></script>
   <script src="./public/js/controllers.js" charset="utf-8"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.js"></script>
@@ -15,100 +16,7 @@
   <link rel="stylesheet" href="./public/styles.css">
   <title>Reddit Clone</title>
 </head>
-<body ng-app="reddit" ng-controller="posts">
-  <div id="header" class="ui huge inverted secondary stackable menu">
-    <h2 class="header item">
-      Reddit Clone
-    </h2>
-    <a class="item" ng-click="view.newpost = !view.newpost">
-      Add Post +
-    </a>
-    <div class="header item">
-      Sort By
-    </div>
-    <a class="item" ng-click="sorter('-count')" ng-class="{active: view.sorter == '-count'}">
-      Most Popular
-    </a>
-    <a class="item" ng-click="sorter('date')" ng-class="{active: view.sorter == 'date'}">
-      Newest
-    </a>
-    <a class="item" ng-click="sorter('-comments.length')" ng-class="{active: view.sorter == '-comments.length'}">
-      Most Comments
-    </a>
-    <div class="right menu">
-      <div class="item">
-        <div class="ui icon input inverted">
-          <input type="text" placeholder="Search..." ng-model="searchFilter">
-          <i class="search link icon"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="ui sixteen column centered grid">
-    <div class="box-one fourteen wide column" ng-show="view.newpost">
-      <form class="ui form css-form" name="new" ng-submit="submit(new.$valid)" novalidate>
-        <div class="field">
-          <label>Title</label>
-          <input type="text" name="title" ng-model="title" required>
-          <div ng-messages="new.title.$error" ng-if="new.title.$touched">
-            <p ng-message="required" class="ui negative message">The title is required.</p>
-          </div>
-        </div>
-        <div class="field">
-          <label>Author</label>
-          <input type="text" name="author" ng-model="author" required>
-        </div>
-        <div class="field">
-          <label>Image URL</label>
-          <input type="text" name="imageLink" ng-model="imageLink" required>
-        </div>
-        <div class="field">
-          <label>Description</label>
-          <textarea placeholder="your content here..." name="description" ng-model="description" required></textarea>
-        </div>
-        <input class="ui button" id="submit" type="submit" value="Submit">
-      </form>
-    </div>
-    <div class="ui stackable internally celled grid item fourteen wide column" ng-animate="'animate'" ng-repeat="post in view.posts | orderBy : view.sorter | filter : searchFilter">
-      <div class="row">
-        <div class="three wide column">
-          <img class="ui middle aligned rounded small image" ng-src="{{post.imageLink}}" alt="">
-        </div>
-        <div class="thirteen wide column">
-          <h2>
-            {{post.title}}
-            <button class="ui button" ng-click="vote(post.id, 'up')"><i class="long arrow up icon"></i></button>
-            <button class="ui button" ng-click="vote(post.id, 'down')"><i class="long arrow down icon"></i></button>
-            <span ng-class="{positive: post.count > 0, negative: post.count < 0}">{{post.count}}</span>
-          </h2>
-          <p class="">By: {{post.author}}</p>
-          <p class="post-content">{{post.content}}</p>
-          <p>{{post.date | date: fullDate}} |
-            <a ng-click="comments = !comments">
-              <ng-pluralize count="post.comments.length"
-                            when="{'0' : '0 comments',
-                                   '1' : '1 comment',
-                                   'other' : '{} comments'}">
-
-              </ng-pluralize>
-            </a>
-            | <button type="button" class="ui basic button" ng-click="addcomment = !addcomment"><i class="write icon"></i>Add Comment</button>
-          </p>
-          <div ng-show="comments">
-            <h3>Comments:</h3>
-            <div ng-repeat="comment in post.comments">
-              <span class="comments">{{comment}}</span>
-            </div>
-          </div>
-          <div ng-show="addcomment">
-            <form name="newComm" ng-submit="newcomment(newComm.$valid, post.id)">
-              <textarea type="text" name="comment" ng-model="view.comment" required></textarea>
-              <input class="ui button" id="submit" type="submit" ng-click="addcomment = !addcomment">
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<body ng-app="reddit">
+  <div ui-view></div>
 </body>
 </html>
