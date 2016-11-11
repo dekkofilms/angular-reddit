@@ -12,4 +12,9 @@ app.config(function ($stateProvider) {
       templateUrl: './partials/signup.html',
       controller: 'signup'
     })
+    .state('login', {
+      url: '/login',
+      templateUrl: './partials/login.html',
+      controller: 'signup'
+    })
 });

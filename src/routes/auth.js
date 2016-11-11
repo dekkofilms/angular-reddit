@@ -31,5 +31,23 @@ router.post('/signup', function (req, res) {
   })
 });
 
+router.post('/login', function (req, res) {
+  knex('users').where('username', req.body.username).first().then(function (user) {
+    if (!user) {
+      res.send('wrong info given');
+    }
+
+    bcrypt.compare(req.body.password, user.hashed_password)
+      .then(function () {
+        const token = jwt.sign({id: user.id}, process.env.JWT_Token);
+        res.json({
+          token: token
+        });
+      }, function () {
+        res.send('wrong info given');
+  });
+  })
+});
+
 
 module.exports = router;

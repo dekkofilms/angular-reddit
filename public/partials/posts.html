@@ -18,11 +18,14 @@
     Most Comments
   </a>
   <div class="right menu">
-    <a class="item" ui-sref="signup" ng-class="{active: false}">
+    <a class="item" ui-sref="signup" ng-class="{active: false}" ng-hide="isUser">
       Sign Up
     </a>
-    <a class="item" ng-class="{active: false}">
+    <a class="item" ui-sref="login" ng-class="{active: false}" ng-hide="isUser">
       Login
+    </a>
+    <a class="item" ng-class="{active: false}" ng-show="isUser" ng-click="logout()">
+      Logout
     </a>
     <div class="item">
       <div class="ui icon input inverted">

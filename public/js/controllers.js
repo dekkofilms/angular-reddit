@@ -1,4 +1,4 @@
-app.controller('posts', ['$scope', '$http', function ($scope, $http) {
+app.controller('posts', ['$scope', '$http', '$window', function ($scope, $http, $window) {
 
   $scope.view = {};
   $scope.view.newpost = false;
@@ -58,14 +58,35 @@ app.controller('posts', ['$scope', '$http', function ($scope, $http) {
     $scope.view.sorter = flag;
   }
 
+  console.log($window.localStorage.token);
+
+  $scope.isUser = false;
+  if ($window.localStorage.token) {
+    $scope.isUser = true;
+  }
+  console.log($scope.isUser);
+
+  $scope.logout = function () {
+    console.log('hit logout');
+    $window.localStorage.setItem('token', "");
+    $scope.isUser = false;
+  }
+
 }]);
 
 app.controller('signup', ['$scope', '$http', '$window', '$state', function ($scope, $http, $window, $state) {
   $scope.user = {}
 
   $scope.newUser = function () {
-
     $http.post('/auth/signup', $scope.user).then(function (response) {
+      console.log(response.data.token);
+      $window.localStorage.setItem('token', response.data.token);
+      $state.go('index');
+    })
+  }
+
+  $scope.login = function () {
+    $http.post('/auth/login', $scope.user).then(function (response) {
       console.log(response.data.token);
       $window.localStorage.setItem('token', response.data.token);
       $state.go('index');
