@@ -43,10 +43,6 @@
         </div>
       </div>
       <div class="field">
-        <label>Author</label>
-        <input type="text" name="author" ng-model="author" required>
-      </div>
-      <div class="field">
         <label>Image URL</label>
         <input type="text" name="imageLink" ng-model="imageLink" required>
       </div>
@@ -60,7 +56,7 @@
   <div class="ui stackable internally celled grid item fourteen wide column" ng-animate="'animate'" ng-repeat="post in view.posts | orderBy : view.sorter | filter : searchFilter">
     <div class="row">
       <div class="three wide column">
-        <img class="ui middle aligned rounded small image" ng-src="{{post.imageLink}}" alt="">
+        <img class="ui middle aligned rounded small image" ng-src="{{post.image_link}}" alt="">
       </div>
       <div class="thirteen wide column">
         <h2>
@@ -69,9 +65,9 @@
           <button class="ui button" ng-click="vote(post.id, 'down')"><i class="long arrow down icon"></i></button>
           <span ng-class="{positive: post.count > 0, negative: post.count < 0}">{{post.count}}</span>
         </h2>
-        <p class="">By: {{post.author}}</p>
+        <p class="">By: {{post.username}}</p>
         <p class="post-content">{{post.content}}</p>
-        <p>{{post.date | date: fullDate}} |
+        <p>{{post.created_at | date: fullDate}} |
           <a ng-click="comments = !comments">
             <ng-pluralize count="post.comments.length"
                           when="{'0' : '0 comments',
@@ -85,7 +81,7 @@
         <div ng-show="comments">
           <h3>Comments:</h3>
           <div ng-repeat="comment in post.comments">
-            <span class="comments">{{comment}}</span>
+            <span class="comments">{{comment.content}} -- {{comment.username}}</span>
           </div>
         </div>
         <div ng-show="addcomment">

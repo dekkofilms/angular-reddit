@@ -30,6 +30,23 @@ const auth = require('./routes/auth');
 
 app.use('/auth', auth);
 
+app.get('/posts', function (req, res) {
+  knex('posts').innerJoin('users', 'posts.user_id', 'users.id').then(function (posts) {
+    knex('comments').innerJoin('users', 'comments.post_id', 'users.id').then(function (comm) {
+      posts.forEach(function (post) {
+        var comments = [];
+        comm.forEach(function (comment) {
+          if (post.id === comment.post_id) {
+            comments.push(comment)
+          }
+        })
+        post.comments = comments;
+      })
+      res.json(posts);
+    })
+  })
+});
+
 app.listen(PORT, function () {
   console.log('Lisening!');
 });

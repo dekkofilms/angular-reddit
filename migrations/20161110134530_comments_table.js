@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
     table.foreign('user_id').references('id').inTable('users');
     table.integer('post_id').unsigned();
     table.foreign('post_id').references('id').inTable('posts');
-    table.timestamps();
+    table.timestamps(true, true);
   })
 };
 
